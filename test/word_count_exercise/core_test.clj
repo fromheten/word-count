@@ -15,7 +15,7 @@
     (is (= 5 (word-count (first sample-texts))))
     (is (= 6 (word-count (second sample-texts))))
     (is (= 1 (line-count (first sample-texts))))
-    (is (= {:words 6 :lines 1 :chars 30} (word-count-all (second sample-texts))))
+    (is (= "line:1, words:6, chars:30" (word-count-all (second sample-texts))))
     (is (= (sort [["nice" 2] ["very" 1] ["Really" 1] ["counting" 1] ["Very" 1]])
            (sort (word-count-frequencies (second sample-texts)))))
     (is (= (word-count really-long-text)

@@ -29,10 +29,7 @@
 (defn character-count [text] (count (characters text)))
 
 (defn word-count-all [text]
-  {:words (word-count text)
-   ;; There was a error in the spec - "lines" was spelled in singular ("line")
-   :lines (line-count text)
-   :chars (character-count text)})
+  (str "line:" (line-count text) ", words:" (word-count text) ", chars:" (character-count text)))
 
 (defn word-count-frequencies [text]
   (into [] (frequencies (filter-empty (clojure.string/split text #"\W|_")))))
@@ -46,5 +43,6 @@
                (args "--frequencies") (do (println "--frequencies") (word-count-frequencies text))
                (args "--all") (word-count-all text)
                (args "--parallel") (word-count-parallel text)
-               (args "--help") (println "Welcome to my word counter! Usage: call the program with a file-path (absolute path please) as the last argument. You can optionally have --frequencies, --all or --parallel as first argument. --help with print this message.")))
+               (args "--help") "Welcome to my word counter! Usage: call the program with a file-path (absolute path please) as the last argument. You can optionally have --frequencies, --all or --parallel as first argument. --help with print this message."
+               :else (word-count text)))
     (System/exit 0)))
